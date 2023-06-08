@@ -1,0 +1,500 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --back: #f5f5f5;
+    --menus: #ffffff;
+
+    --submenus: #e9e9e9;
+
+    --text: black;
+    --text-two: #a7a7a7;
+    --some-elements: #9873ff;
+    --some-elements-two: #b79dff;
+    --some-elements-three: #f9c9bf;
+    --some-elements-four: #fdaf9f;
+
+    --for-contact: #e7e5eb;
+    --for-contact-border: rgb(212, 212, 212)
+}
+
+button, input {
+    outline: none !important;
+}
+
+body {
+    background: var(--back);
+
+    font-family: 'Roboto', sans-serif;
+}
+
+button, input {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background: var(--menus);
+
+    width: 100%;
+    height: 7vh;
+
+    box-shadow: 0.01vh -0.5vh 2vh var(--text);
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 3vh;
+}
+
+.other_fields input {
+    padding: 0.8vh;
+    padding-right: 25vh;
+
+    border: 0.155vh solid var(--text-two);
+
+    margin-left: 3vh;
+}
+
+.container {
+    width: 75%;
+
+    position: absolute;
+
+    left: 50%;
+    transform: translate(-50%);
+
+    top: 15vh;
+}
+
+.logo_item {
+    background: var(--some-elements);
+    color: white;
+    
+    width:  3.7vh;
+    height: 3.7vh;
+
+    padding: 1.3vh;
+
+    border-radius: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_title {
+    margin-bottom: 3vh;
+}
+
+.titles td, .time_span {
+    color: var(--text-two);
+}
+
+.table_section, .table_section table {
+    width: 100%;
+}
+
+.titles td {
+    padding-bottom: 1vh;
+    padding-left: 0.6vh;
+
+    font-size: 1.2vh;
+
+    
+}
+
+.user {
+    margin-top: 1vh;
+
+    background: var(--menus);
+
+    height: 6vh !important;
+}
+
+.user td {
+    padding: 1vh;
+}
+
+table {
+    border-spacing: 0;
+}
+
+#id {
+    color: var(--text-two);
+}
+
+
+#contacts i {
+    color: var(--some-elements-two);
+}
+
+td {
+    cursor: default;
+}
+
+#contacts i:hover, .fa-pencil:hover{
+    color: var(--some-elements);
+}
+.fa-xmark {
+    color: var(--some-elements-three);
+}
+
+.fa-pencil {
+    color: var(--some-elements-two);
+}
+
+.fa-xmark:hover {
+    color: var(--some-elements-four);
+}
+
+.for_line {
+    width: 100%;
+    height: 0.2vh;
+}
+
+.add_client_button {
+    padding: 1vh 3vh;
+
+    color: var(--some-elements);
+
+    border: 0.2vh solid var(--some-elements);
+}
+
+.add_client_button:hover {
+    background: var(--text);
+
+    transition: 0.3s;
+}
+
+.button_section { 
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+
+    margin-top: 6vh;
+}
+
+
+.contact {
+
+    position: relative;
+}
+
+.contact i {
+    margin: 0 0.2vh;
+}
+
+.data_set {
+    background: var(--text-two);
+    color: white;
+    padding: 1vh;
+
+    display: none;
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: -4vh;
+}
+
+.buttons_actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+i {
+    color: var(--some-elements);
+}
+
+.modal {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--menus);
+
+    z-index: 3;
+}
+
+.modal_add_client, .modal_new_client {
+    width: 50vh;
+    min-height: 60vh;
+
+    display: none;
+}
+
+
+.inputs_block {
+    display: flex;
+    flex-direction: column;
+    margin: 0 3vh;
+}
+
+.mac_title, .mnc_title {
+    margin-bottom: 3vh;
+    padding-top: 3vh;
+    margin: 0 3vh;
+    font-size: 3vh;
+}
+
+.mac_title span {
+    color: var(--text-two);
+    font-size: 1.8vh;
+}
+
+.input_div {
+    margin: 2.3vh 0;
+
+    width: 100% !important;
+}
+
+.input_div p {
+    color: var(--text-two);
+
+    font-size: 1.6vh;
+    margin-bottom: 1.7vh;
+}
+
+.input_div input {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--text-two);
+
+    width: 100%;
+
+    font-size: 1.6vh;
+
+    outline: none;
+}
+
+.contact_add {
+    /* margin: 3vh 0; */
+
+    padding: 1.4vh;
+    
+    font-size: 1.8vh;
+
+    background: var(--submenus);
+    border: 0;
+}
+
+.buttons_block {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons_block button {
+    margin: 0.5vh 0;
+
+    font-size: 2vh;
+}
+
+.ready_button, .delete_button_mdc, .save_new_client {
+    border: 0;
+
+    padding: 1vh 6vh;
+
+    background: var(--some-elements);
+    color: white;
+}
+
+.ready_button:hover, .delete_button_mdc:hover, .save_new_client:hover {
+    background: black;
+    transition: .3s;
+}
+
+.delete_button {
+    background: var(--menus);
+    border: 0;
+    text-decoration: underline;
+
+    font-size: 1.1vh;
+}
+
+.delete_button:hover {
+    color: var(--text-two);
+
+    transition: .3s;
+}
+
+.contact_add:hover {
+    background: black;
+    color: white;
+
+    transition: .3s;
+}
+
+.mac_back {
+    position: absolute;
+    top: 0;left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: black;
+    opacity: 0.3;
+
+    z-index: 2;
+
+    display: none;
+}
+
+.mac_cross i, .mnc_cross i {
+    color: var(--text-two);
+
+    font-size: 2.5vh;
+}
+
+.mac_cross, .mnc_cross {
+    position: absolute;
+
+    top: 1.3555vh;
+    right: 1.3555vh;
+}
+
+.modal_delete_client {
+    text-align: center;
+
+    padding: 3vh;
+
+    display: none;
+}
+
+
+.modal_delete_client p {
+    margin-bottom: 3vh;
+}
+
+.cancel_button_mdc {
+    background: var(--menus);
+    border: 0;
+
+    text-decoration: underline;
+}
+
+.cancel_button_mdc:hover {
+    color: var(--text-two);
+
+    transition: .3s;
+}
+
+.actions_td {
+    padding-left: 2.5vh !important;
+}
+
+.modal_contacts {
+    background: var(--submenus);
+}
+
+.contacts_in_modal, .contact_add {
+    width: 100% !important;
+}
+
+.new_contact_field {
+    display: flex;
+    justify-content: center;
+
+    background: var(--submenus);
+
+    border: 0.2vh solid var(--submenus);
+
+    padding: 1.4vh 0.5vh;
+}
+
+.dropdown_menu_contact select {
+    border: 0;
+    outline: none;
+    background: var(--for-contact);
+    height: 100%;
+
+    padding: 0 1vh !important;
+    border: 0.3vh solid var(--for-contact-border);
+    font-size: 1.8vh;
+}
+
+.contact_add_input input {
+    background: var(--submenus);
+    border: 0.3vh solid var(--for-contact-border);
+    border-left: 0;
+    border-right: 0;
+
+    height: 100%;
+    width: 100%;
+
+    outline: none;
+
+    padding: 1vh;
+
+    font-size: 1.8vh;
+}
+
+.cancel_new_contact {
+    padding: 1vh;
+
+    font-size: 1.8vh;
+
+    background: var(--for-contact);
+    border: 0.3vh solid var(--for-contact-border);
+}
+
+.save_new_client, .ready_button {
+    margin-top: 2vh !important;
+    margin-bottom: 2vh !important;
+}
+
+.cancel_new_contact i:hover {
+    color: var(--some-elements-four);
+
+    transition: .3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+    display: none;
+}
