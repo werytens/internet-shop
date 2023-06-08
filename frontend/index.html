@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Shop</title>
+
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <script src="./assets/js/index.js" defer type = "module"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class = "modal modal_add_client">
+        <h4 class = "mac_title">
+            Изменить данные <span> ID: 0</span>
+        </h4>
+        <div class="mac_cross">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="inputs_block">
+            <div class="input_div">
+                <p>Фамилия<span>*</span></p>
+                <input type="text">
+            </div>
+            <div class="input_div">
+                <p>Имя<span>*</span></p>
+                <input type="text">
+            </div>
+            <div class="input_div">
+                <p>Отчество</p>
+                <input type="text">                
+            </div>
+        </div>
+
+        <span class = "contacts_in_modal">
+            <button class = "contact_add">
+                <i class="fa-solid fa-circle-plus"></i> Добавить контакт
+            </button>
+        </span>
+
+        <div class="buttons_block">
+            <button class="ready_button">
+                Сохранить
+            </button>
+
+            <button class="delete_button">
+                Удалить клиента
+            </button>
+        </div>
+    </div>
+
+    <div class = "modal modal_new_client">
+        <h4 class = "mnc_title">
+            Добавление клиента
+        </h4>
+        <div class="mnc_cross">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="inputs_block">
+            <div class="input_div">
+                <p>Фамилия<span>*</span></p>
+                <input type="text">
+                <div class="input_div">
+            </div>
+                <p>Имя<span>*</span></p>
+                <input type="text">
+            </div>
+            <div class="input_div">
+                <p>Отчество</p>
+                <input type="text">                
+            </div>
+        </div>
+
+        <span class = "contacts_in_modal">
+            <button class = "contact_add">
+                <i class="fa-solid fa-circle-plus"></i> Добавить контакт
+            </button>
+        </span>
+
+        <div class="buttons_block">
+            <button class="save_new_client">
+                Сохранить
+            </button>
+        </div>
+    </div>
+
+    
+    <div class="modal modal_delete_client">
+        <h4 class = "mdc_title">
+            Удалить клиента
+        </h4>
+
+        <p>
+            Вы действительно хотите удалить данного клиента?
+        </p>
+
+        <div class="buttons_block">
+            <button class="delete_button_mdc">
+                Удалить
+            </button>
+
+            <button class="cancel_button_mdc">
+                Отмена
+            </button>
+        </div>
+    </div>
+
+
+    <div class="mac_back"></div>
+
+    <header>
+        <div class="logo">
+            <div class="logo_item">
+                <p class="logo_text">
+                    skb.
+                </p>
+            </div>
+            <!-- <div class="icons">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-vk"></i>
+                <i class="fa-solid fa-square-phone"></i>
+                <i class="fa-solid fa-envelope"></i>
+                <i class="fa-solid fa-circle-user"></i>
+            </div> -->
+        </div>
+        <div class="other_fields">
+            <input type="text" placeholder="Введите запрос">
+        </div>
+    </header>
+    <div class="container">
+        <main>
+            <h1 class="main_title">
+                Клиенты
+            </h1>
+
+            <section class = "table_section">
+                <table>
+                   <tr class = "titles">
+                    <td>ID</td>
+                    <td>Фамилия Имя Отчество</td>
+                    <td>Дата и время создания</td>
+                    <td>Последние изменения</td>
+                    <td>Контакты</td>
+                    <td class = "actions_td">Действия</td>
+                   </tr>
+
+                    <!-- <tr class="user">
+                        <td id = "id">123455</td>
+                        <td id = "fcs">Скворцов Денис Юрьевич</td>
+                        <td id = "create_date">21.02.2021 <span class = "time_span">12:41</span></td>
+                        <td id  = "change_date">21.02.2021 <span class = "time_span">14:50</span></td>
+                        <td id = "contacts">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-vk"></i>
+                            <i class="fa-solid fa-square-phone"></i>
+                            <i class="fa-solid fa-envelope"></i>
+                            <i class="fa-solid fa-circle-user"></i>
+                        </td>
+                        <td id = "actions">
+                            <div class="change_div">
+                                <i class="fa-solid fa-pencil"></i> Изменить
+                            </div>
+                            <div class="delete_div">
+                                <i class="fa-solid fa-xmark"></i> Удалить
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class = "for_line"></tr>
+                    
+                    <tr class="user">
+                        <td id = "id">123455</td>
+                        <td id = "fcs">Скворцов Денис Юрьевич</td>
+                        <td id = "create_date">21.02.2021 <span class = "time_span">12:41</span></td>
+                        <td id  = "change_date">21.02.2021 <span class = "time_span">14:50</span></td>
+                        <td id = "contacts">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-vk"></i>
+                            <i class="fa-solid fa-square-phone"></i>
+                            <i class="fa-solid fa-envelope"></i>
+                            <i class="fa-solid fa-circle-user"></i>
+                        </td>
+                        <td id = "actions">
+                            <div class="change_div">
+                                <i class="fa-solid fa-pencil"></i> Изменить
+                            </div>
+                            <div class="delete_div">
+                                <i class="fa-solid fa-xmark"></i> Удалить
+                            </div>
+                        </td>
+                    </tr> -->
+                </table>
+
+                <div class="button_section">
+                    <button class="add_client_button">
+                        <i class="fa-solid fa-user-plus"></i> Добавить клиента
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <button id = "test">test</button>
+</body>
+</html>
