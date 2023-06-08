@@ -134,10 +134,25 @@ document.getElementById("test").addEventListener("click", async () => {
 })
 
 document.querySelector(".save_new_client").addEventListener("click", async () => {
+    const contactsNamesDict = {
+        "Facebook": "facebook",
+        "Телефон": "phoneNumber"
+    }
+
     let item = document.querySelector(".save_new_client").parentElement.parentElement;
 
     let inputs = item.children[2].querySelectorAll("input");
     let contacts = document.querySelectorAll(".new_contact_field");  
+
+    let contactReadyForLoad = []
+
+    try { contacts.forEach(item => {
+            for (let index in item.children[0].children[0].children) {
+                if (item.children[0].children[0].children[index].dataset.selected == "selected") {
+                    contactReadyForLoad.push(`{"${contactsNamesDict[item.children[0].children[0].children[index].value]}":"${item.children[1].children[0].value}"}`)
+    }}})} catch (error) { null }
+
+    console.log(contactReadyForLoad)
 
     let newClient = {
         id: (await getItems()).length + 1,
@@ -149,12 +164,7 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
         }
     }
 
-    // for (let index = 0; index < contacts.length; index++) {
-        // console.log(contacts[index].children[0].innerHTML, contacts[index].children[1], contacts[index].children[2])
-        // console.log(document.querySelector(".dropdown_menu_contact").innerHTML)
-    // }
-
-    await createItem(newClient);
+    // await createItem(newClient);
 })
 
 

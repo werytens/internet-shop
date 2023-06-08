@@ -38,8 +38,12 @@ export function newContactAdd(itemForAppend) {
     })
     
     let select = document.querySelector(".dropdown_menu_contact").children[0];
-
+    select.children[0].dataset.selected = "selected";
     select.addEventListener("click", () => {
-        console.log(select.options[select.selectedIndex].value)
+        document.querySelectorAll("option").forEach(item => {
+            item.dataset.selected="unselected";
+        })
+
+        select.options[select.selectedIndex].dataset.selected="selected";
     })
 }
