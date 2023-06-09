@@ -1,6 +1,7 @@
 import { renderClients } from "./modules/renderClients.js";
 import { newContactAdd } from "./modules/newContactAdd.js";
 import { deletingAllNewContactsAdd } from "./modules/deletingAllNewContactsAdd.js";
+import { validation } from "./modules/validation.js";
 
 import { getItems, createItem, deleteItem } from "./api.js";
 
@@ -102,7 +103,6 @@ setTimeout(() => {
 
         deletingAllNewContactsAdd();
     })
-
 }, 200) 
 
 // Contract Add Events
@@ -115,29 +115,15 @@ setTimeout(() => {
     )
 }, 200)
 
-
-document.getElementById("test").addEventListener("click", async () => {
-    let allItems = await getItems()
-    
-    let object = {
-        id: 0,
-        fcs: "Проверка Проверенкова Проверковна",
-        createDate: new Date("2021-02-21T12:41:00"),
-        changeDate: new Date("2021-02-21T12:41:00"),
-        contacts: {
-            phoneNumber: "+79029877953",
-            facebook: "facebook.link.123"
-        }
-    }
-
-    await createItem(object);
-})
-
 document.querySelector(".save_new_client").addEventListener("click", async () => {
     const contactsNamesDict = {
+        "Телефон": "phoneNumber",
+        "Email": "email",
         "Facebook": "facebook",
-        "Телефон": "phoneNumber"
+        "VK": "vkontakte",
+        "Другое": "other_contact"
     }
+
 
     let item = document.querySelector(".save_new_client").parentElement.parentElement;
 
@@ -157,18 +143,33 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
         }
     )} catch (error) { null }
 
-    // console.log()
+    let contactsValidation = contactReadyForLoad.join(":").split(":");
+    
+    let finishContacts;
 
+    contactsValidation.forEach((item, index) => {
+        if (item == '"phoneNumber"') {
+            if (contactsValidation[index + 1].slice(1).slice(0, contactsValidation[index + 1].length - 2)[0] == "8") {
+                finishContacts = contactReadyForLoad.join(",").replace(String(contactsValidation[index + 1].slice(1).slice(0, contactsValidation[index + 1].length - 2)), 
+                `+7${contactsValidation[index + 1].slice(1).slice(0, contactsValidation[index + 1].length - 2).slice(1)}`)
+                finishContacts = finishContacts.split(",")
+            }
+        }
+    })
     let newClient = {
         id: (await getItems()).length + 1,
-        fcs: `${inputs[0].value} ${inputs[1].value} ${inputs[2].value}`,
+        fcs: `${inputs[0].value.trim()} ${inputs[1].value.trim()} ${inputs[2].value.trim()}`,
         createDate: new Date(),
         changeDate: new Date(),
-        contacts: JSON.parse(`{${contactReadyForLoad.join(",")}}`)
+        contacts: JSON.parse(`{${finishContacts.join(",")}}`)
     }
 
-    await createItem(newClient);
+    let validCheck = validation(newClient);
+
+    if (validCheck == true) {
+        document.querySelector(".mnc_title").innerHTML = `Добавление клиента `;
+        await createItem(newClient);
+    } else {
+        document.querySelector(".mnc_title").innerHTML = validCheck;
+    }
 })
-
-
-    
