@@ -1,3 +1,5 @@
+import { changeContactSelection } from "./changeContactSelection.js";
+
 export function newContactAdd(itemForAppend) {
     if (itemForAppend.querySelectorAll(".new_contact_field").length == 5) {
         document.querySelector(".mnc_title").innerHTML = `
@@ -36,14 +38,6 @@ export function newContactAdd(itemForAppend) {
     newContact.children[2].addEventListener("click", () => {
         newContact.remove()
     })
-    
-    let select = document.querySelector(".dropdown_menu_contact").children[0];
-    select.children[0].dataset.selected = "selected";
-    select.addEventListener("click", () => {
-        document.querySelectorAll("option").forEach(item => {
-            item.dataset.selected="unselected";
-        })
 
-        select.options[select.selectedIndex].dataset.selected="selected";
-    })
+    changeContactSelection();
 }

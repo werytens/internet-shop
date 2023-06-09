@@ -146,25 +146,28 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
 
     let contactReadyForLoad = []
 
-    try { contacts.forEach(item => {
+    try { contacts.forEach((item, index) => {
             for (let index in item.children[0].children[0].children) {
-                if (item.children[0].children[0].children[index].dataset.selected == "selected") {
-                    contactReadyForLoad.push(`{"${contactsNamesDict[item.children[0].children[0].children[index].value]}":"${item.children[1].children[0].value}"}`)
-    }}})} catch (error) { null }
+                if (typeof item.children[0].children[0].children[index] == "object") {
+                    if (item.children[0].children[0].children[index].dataset.selected == "selected") {
+                        contactReadyForLoad.push(`"${contactsNamesDict[item.children[0].children[0].children[index].value]}":"${item.children[1].children[0].value}"`)
+                    }
+                }
+            }
+        }
+    )} catch (error) { null }
 
-    console.log(contactReadyForLoad)
+    // console.log()
 
     let newClient = {
         id: (await getItems()).length + 1,
         fcs: `${inputs[0].value} ${inputs[1].value} ${inputs[2].value}`,
         createDate: new Date(),
         changeDate: new Date(),
-        contacts: {
-            null: null
-        }
+        contacts: JSON.parse(`{${contactReadyForLoad.join(",")}}`)
     }
 
-    // await createItem(newClient);
+    await createItem(newClient);
 })
 
 
