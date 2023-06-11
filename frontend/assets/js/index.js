@@ -2,13 +2,16 @@ import { renderClients } from "./modules/renderClients.js";
 import { newContactAdd } from "./modules/newContactAdd.js";
 import { deletingAllNewContactsAdd } from "./modules/deletingAllNewContactsAdd.js";
 import { validation } from "./modules/validation.js";
+import { deleteFromTable } from "./modules/deleteFromTable.js";
 
 import { getItems, createItem, deleteItem } from "./api.js";
 
 const table = document.querySelector("table");
 
-document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("aovIntShop") == null) {
+document.addEventListener("DOMContentLoaded", async () => {
+    let startItems = await getItems();
+
+    if (startItems.length == 0) {
         let letStartArray = [
             {
                 id: 0,
@@ -34,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         renderClients(table, letStartArray);
     } else {
-        renderClients(JSON.parse(localStorage.getItem("aovIntShop")));
+        renderClients(table, await getItems());
     }
 })
 
@@ -63,12 +66,19 @@ setTimeout(() => {
         })
     })
     
-    document.querySelectorAll(".delete_div").forEach(item => {
-        item.addEventListener("click", () => {
+    document.querySelectorAll(".delete_div").forEach( async (item) => {
+        item.addEventListener("click", async () => {
             document.querySelector(".modal_delete_client").style.cssText = "display: flex;";
             document.querySelector(".mac_back").style.cssText = "display: block;";  
+
+            document.querySelector(".delete_button_mdc").addEventListener("click", async () => {
+                await deleteFromTable(item.parentElement.parentElement.parentElement);
+                window.location.reload();
+            })
         })
     })
+
+    
 
     document.querySelector(".mac_cross").addEventListener("click", () => {
         document.querySelector(".modal_add_client").style.cssText = "display: none;";
@@ -145,7 +155,7 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
 
     let contactsValidation = contactReadyForLoad.join(":").split(":");
     
-    let finishContacts;
+    let finishContacts = [];
 
     contactsValidation.forEach((item, index) => {
         if (item == '"phoneNumber"') {
@@ -156,6 +166,7 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
             }
         }
     })
+
     let newClient = {
         id: (await getItems()).length + 1,
         fcs: `${inputs[0].value.trim()} ${inputs[1].value.trim()} ${inputs[2].value.trim()}`,
@@ -169,6 +180,11 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
     if (validCheck == true) {
         document.querySelector(".mnc_title").innerHTML = `Добавление клиента `;
         await createItem(newClient);
+        inputs.forEach(item => item.value = "")
+        document.querySelector(".modal_new_client").style.cssText = "display: none;";
+        document.querySelector(".mac_back").style.cssText = "display: none;";  
+        deletingAllNewContactsAdd();
+        window.location.reload();
     } else {
         document.querySelector(".mnc_title").innerHTML = validCheck;
     }
