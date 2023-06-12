@@ -43,21 +43,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 setTimeout(() => {
-    document.querySelectorAll(".fa-square-phone").forEach(element => element.addEventListener("mouseover", () => {
-        element.parentElement.querySelector(".phone_data").style.display = "block";
-    }))
+    // document.querySelectorAll(".fa-square-phone").forEach(element => element.addEventListener("mouseover", () => {
+    //     element.parentElement.querySelector(".phone_data").style.display = "block";
+    // }))
 
-    document.querySelectorAll(".fa-facebook").forEach(element => element.addEventListener("mouseover", () => {
-        element.parentElement.querySelector(".facebook_data").style.display = "block";
-    }))
+    // document.querySelectorAll(".fa-facebook").forEach(element => element.addEventListener("mouseover", () => {
+    //     element.parentElement.querySelector(".facebook_data").style.display = "block";
+    // }))
 
-    document.querySelectorAll(".fa-square-phone").forEach(element => element.addEventListener("mouseleave", () => {
-        element.parentElement.querySelector(".phone_data").style.display = "none";
-    }))
+    // document.querySelectorAll(".fa-square-phone").forEach(element => element.addEventListener("mouseleave", () => {
+    //     element.parentElement.querySelector(".phone_data").style.display = "none";
+    // }))
 
-    document.querySelectorAll(".fa-facebook").forEach(element => element.addEventListener("mouseleave", () => {
-        element.parentElement.querySelector(".facebook_data").style.display = "none";
-    })) 
+    // document.querySelectorAll(".fa-facebook").forEach(element => element.addEventListener("mouseleave", () => {
+    //     element.parentElement.querySelector(".facebook_data").style.display = "none";
+    // })) 
 
     document.querySelectorAll(".change_div").forEach(item => {
         item.addEventListener("click", () => {
@@ -121,6 +121,18 @@ setTimeout(() => {
     document.querySelectorAll(".contact_add").forEach(item => 
         item.addEventListener("click", () => {
             newContactAdd(item.parentElement);
+        })
+    )
+
+    document.querySelectorAll(".contact").forEach(item => 
+        item.addEventListener("mouseover", () => {
+            item.children[1].style.display = "block";
+        })
+    )
+
+    document.querySelectorAll(".contact").forEach(item => 
+        item.addEventListener("mouseleave", () => {
+            item.children[1].style.display = "none";
         })
     )
 }, 200)

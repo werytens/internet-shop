@@ -63,10 +63,6 @@ function renderClient(table, item) {
     let tdContacts = document.createElement("td");
     tdContacts.setAttribute("id", 'td_contacts');
 
-    // Нужно добавить ещё один внешний блок
-
-    console.log(item.contacts)
-
     for (let index in JSON.parse(item.contacts)) {
         switch(index) {
             case "phoneNumber":
@@ -82,6 +78,30 @@ function renderClient(table, item) {
                 <div class = 'contact'>
                     <i class="fa-brands fa-facebook"></i>
                     <span class = "data_set facebook_data">${JSON.parse(item.contacts)[index]}</span>
+                </div>
+                 `;
+                break;
+            case "email":
+                tdContacts.innerHTML += `
+                <div class = 'contact'>
+                <i class="fa-solid fa-envelope"></i>
+                    <span class = "data_set email_data">${JSON.parse(item.contacts)[index]}</span>
+                </div>
+                 `;
+                break;
+            case "vkontakte":
+                tdContacts.innerHTML += `
+                <div class = 'contact'>
+                    <i class="fa-brands fa-vk"></i>
+                    <span class = "data_set vkontakte_data">${JSON.parse(item.contacts)[index]}</span>
+                </div>
+                 `;
+                break;
+            case "other_contact":
+                tdContacts.innerHTML += `
+                <div class = 'contact'>
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span class = "data_set other_contact_data">${JSON.parse(item.contacts)[index]}</span>
                 </div>
                  `;
                 break;

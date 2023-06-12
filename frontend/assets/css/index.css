@@ -127,6 +127,11 @@ table {
 }
 
 
+#td_contacts {
+    display: flex;
+    margin-top: 1vh;
+}
+
 #contacts i {
     color: var(--some-elements-two);
 }
@@ -205,6 +210,8 @@ td {
 .buttons_actions {
     display: flex;
     justify-content: space-around;
+
+    font-size: 1.6vh;
 }
 
 i {
@@ -461,7 +468,7 @@ i {
     transition: .3s;
 }
 
-.data_set:after {
+/* .data_set:after {
     content: "";
     position: absolute; 	
 
@@ -469,10 +476,10 @@ i {
     border-right: 10px solid rgba(255, 241, 190, 0); 
     border-top: 10px solid black; 
 
-    left: 30%;
+    left: 30%; */
     /* transform: translate(-50%); */
-    top: 3.4vh;
-}​
+    /* top: 3.4vh;
+}​ */
 
 
 
