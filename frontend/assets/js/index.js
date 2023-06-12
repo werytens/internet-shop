@@ -4,7 +4,7 @@ import { deletingAllNewContactsAdd } from "./modules/deletingAllNewContactsAdd.j
 import { validation } from "./modules/validation.js";
 import { deleteFromTable } from "./modules/deleteFromTable.js";
 
-import { getItems, createItem, deleteItem } from "./api.js";
+import { getItems, createItem, deleteItem, updateItem } from "./api.js";
 
 const table = document.querySelector("table");
 
@@ -61,6 +61,7 @@ setTimeout(() => {
 
     document.querySelectorAll(".change_div").forEach(item => {
         item.addEventListener("click", () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
             document.querySelector(".modal_add_client").style.cssText = "display: flex;";
             document.querySelector(".mac_back").style.cssText = "display: block;";  
         })
@@ -68,11 +69,26 @@ setTimeout(() => {
     
     document.querySelectorAll(".delete_div").forEach( async (item) => {
         item.addEventListener("click", async () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+
             document.querySelector(".modal_delete_client").style.cssText = "display: flex;";
             document.querySelector(".mac_back").style.cssText = "display: block;";  
 
             document.querySelector(".delete_button_mdc").addEventListener("click", async () => {
                 await deleteFromTable(item.parentElement.parentElement.parentElement);
+
+                let itemForDeleteId = Number(item.parentElement.parentElement.parentElement.children[0].innerHTML);
+                setTimeout(async () => {
+                    (await getItems()).forEach(async (item) => {
+                        if (item.id > itemForDeleteId) {
+                            item.oldId = item.id;
+                            item.id = item.oldId - 1;
+                            // console.log(item)
+                            await updateItem(item);
+                        }
+                    })
+                }, 100)
+
                 window.location.reload();
             })
         })
@@ -105,6 +121,8 @@ setTimeout(() => {
     document.querySelector(".add_client_button").addEventListener("click", () => {
         document.querySelector(".modal_new_client").style.cssText = "display: flex;";
         document.querySelector(".mac_back").style.cssText = "display: block;";
+
+        window.scrollTo({top: 0, behavior: 'smooth'});
     })
 
     document.querySelector(".mnc_cross").addEventListener("click", () => {
@@ -201,3 +219,21 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
         document.querySelector(".mnc_title").innerHTML = validCheck;
     }
 })
+
+
+// document.querySelector(".test").addEventListener("click", async () => {
+
+    // let text = {
+    //     id: (await getItems()).length + 30,
+    //     fcs: "Проверка Проверенкова Проверковна",
+    //     createDate: new Date("2021-02-21T12:41:00"),
+    //     changeDate: new Date("2021-02-21T12:41:00"),
+    //     contacts: {
+    //         phoneNumber: "+79029877953",
+    //         facebook: "facebook.link.123"
+    //     },
+    //     oldId: 2
+    // }
+
+    // await updateItem(text);
+// })
