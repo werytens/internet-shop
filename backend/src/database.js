@@ -1,10 +1,13 @@
 import mysql from "mysql";
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 export const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1234",
-    database: "internet_shop_lipatov",
+    host: process.env.SQL_HOST,
+    user: process.env.SQL_LOGIN,
+    password: process.env.SQL_PASSWORD,
+    database: process.env.SQL_DATABASE,
 });
 
 connection.connect();

@@ -9,33 +9,28 @@ import { getItems, createItem, deleteItem, updateItem } from "./api.js";
 const table = document.querySelector("table");
 
 document.addEventListener("DOMContentLoaded", async () => {
-    let startItems = await getItems();
+    if ((await getItems()).length == 0) {
+        renderClients(table, [{
+            id: 1,
+            FCS: "Проверка Проверенкова Проверковна",
+            createDate: new Date("2021-02-21T12:41:00"),
+            updateDate: new Date("2021-02-21T12:41:00"),
+            contacts: JSON.stringify({
+                phoneNumber: "+79029877953",
+                facebook: "facebook.link.123"
+            })
+        }]);
 
-    if (startItems.length == 0) {
-        let letStartArray = [
-            {
-                id: 0,
-                fcs: "Проверка Проверенкова Проверковна",
-                createDate: new Date("2021-02-21T12:41:00"),
-                changeDate: new Date("2021-02-21T12:41:00"),
-                contacts: {
-                    phoneNumber: "+79029877953",
-                    facebook: "facebook.link.123"
-                }
-            },
-            {
-                id: 1,
-                fcs: "Проверок Провереников Проверковен",
-                createDate: new Date("2021-02-21T12:41:00"),
-                changeDate: new Date("2021-02-21T12:41:00"),
-                contacts: {
-                    phoneNumber: "+75245098344",
-                    facebook: "facebook.link.124"
-                }
-            }
-        ]
-
-        renderClients(table, letStartArray);
+        await createItem({
+            id: 1,
+            fcs: "Проверка Проверенкова Проверковна",
+            createDate: new Date("2021-02-21T12:41:00"),
+            changeDate: new Date("2021-02-21T12:41:00"),
+            contacts: JSON.stringify({
+                phoneNumber: "+79029877953",
+                facebook: "facebook.link.123"
+            })
+        })
     } else {
         renderClients(table, await getItems());
     }
@@ -43,22 +38,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 setTimeout(() => {
-    // document.querySelectorAll(".fa-square-phone").forEach(element => element.addEventListener("mouseover", () => {
-    //     element.parentElement.querySelector(".phone_data").style.display = "block";
-    // }))
-
-    // document.querySelectorAll(".fa-facebook").forEach(element => element.addEventListener("mouseover", () => {
-    //     element.parentElement.querySelector(".facebook_data").style.display = "block";
-    // }))
-
-    // document.querySelectorAll(".fa-square-phone").forEach(element => element.addEventListener("mouseleave", () => {
-    //     element.parentElement.querySelector(".phone_data").style.display = "none";
-    // }))
-
-    // document.querySelectorAll(".fa-facebook").forEach(element => element.addEventListener("mouseleave", () => {
-    //     element.parentElement.querySelector(".facebook_data").style.display = "none";
-    // })) 
-
     document.querySelectorAll(".change_div").forEach(item => {
         item.addEventListener("click", () => {
             window.scrollTo({top: 0, behavior: 'smooth'});
@@ -83,7 +62,6 @@ setTimeout(() => {
                         if (item.id > itemForDeleteId) {
                             item.oldId = item.id;
                             item.id = item.oldId - 1;
-                            // console.log(item)
                             await updateItem(item);
                         }
                     })
