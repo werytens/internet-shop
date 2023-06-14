@@ -3,9 +3,9 @@ import { newContactAdd } from "./modules/newContactAdd.js";
 import { deletingAllNewContactsAdd } from "./modules/deletingAllNewContactsAdd.js";
 import { validation } from "./modules/validation.js";
 import { deleteFromTable } from "./modules/deleteFromTable.js";
+import { changeClients } from "./modules/changeClients.js";
 
 import { getItems, createItem, deleteItem, updateItem } from "./api.js";
-
 const table = document.querySelector("table");
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -39,10 +39,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 setTimeout(() => {
     document.querySelectorAll(".change_div").forEach(item => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", async () => {
             window.scrollTo({top: 0, behavior: 'smooth'});
             document.querySelector(".modal_add_client").style.cssText = "display: flex;";
             document.querySelector(".mac_back").style.cssText = "display: block;";  
+
+            let itemId = Number(item.parentElement.parentElement.parentElement.children[0].innerHTML);
+            (await getItems()).forEach(async el => {
+                if (el.id == itemId) {
+                    await changeClients(el);
+                }
+            })
         })
     })
     
@@ -192,7 +199,7 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
         document.querySelector(".modal_new_client").style.cssText = "display: none;";
         document.querySelector(".mac_back").style.cssText = "display: none;";  
         deletingAllNewContactsAdd();
-        window.location.reload();
+        // window.location.reload();
     } else {
         document.querySelector(".mnc_title").innerHTML = validCheck;
     }
