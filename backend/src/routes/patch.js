@@ -6,7 +6,7 @@ export default (req, res) => {
         return res.json({ error: "No text provided" });
 
     connection.query(
-        "UPDATE CLIENTS SET id = ?, FCS = ?, createDate = ?, updateDate = ?, contacts = ? WHERE id = ?",
+        "UPDATE clients SET id = ?, FCS = ?, createDate = ?, updateDate = ?, contacts = ? WHERE id = ?",
         [
             req.body.text.id,
             req.body.text.FCS,

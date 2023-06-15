@@ -74,7 +74,9 @@ setTimeout(() => {
                     })
                 }, 100)
 
-                window.location.reload();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 400)
             })
         })
     })
@@ -172,15 +174,14 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
     
     let finishContacts = [];
 
-    contactsValidation.forEach((item, index) => {
-        if (item == '"phoneNumber"') {
-            if (contactsValidation[index + 1].slice(1).slice(0, contactsValidation[index + 1].length - 2)[0] == "8") {
-                finishContacts = contactReadyForLoad.join(",").replace(String(contactsValidation[index + 1].slice(1).slice(0, contactsValidation[index + 1].length - 2)), 
-                `+7${contactsValidation[index + 1].slice(1).slice(0, contactsValidation[index + 1].length - 2).slice(1)}`)
-                finishContacts = finishContacts.split(",")
-            }
+    contactReadyForLoad.forEach(item => {
+        if (item.split('"')[1] == "phoneNumber" && item.split(":")[1][1] == "8") {
+            finishContacts.push(`"phoneNumber":"+7${item.slice(item.indexOf("8") + 1)}`)
+        } else {
+            finishContacts.push(item)
         }
     })
+    
 
     let newClient = {
         id: (await getItems()).length + 1,
@@ -192,6 +193,8 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
 
     let validCheck = validation(newClient);
 
+    console.log(newClient)
+
     if (validCheck == true) {
         document.querySelector(".mnc_title").innerHTML = `Добавление клиента `;
         await createItem(newClient);
@@ -199,26 +202,10 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
         document.querySelector(".modal_new_client").style.cssText = "display: none;";
         document.querySelector(".mac_back").style.cssText = "display: none;";  
         deletingAllNewContactsAdd();
-        // window.location.reload();
+        window.location.reload();
     } else {
         document.querySelector(".mnc_title").innerHTML = validCheck;
     }
 })
 
 
-// document.querySelector(".test").addEventListener("click", async () => {
-
-    // let text = {
-    //     id: (await getItems()).length + 30,
-    //     fcs: "Проверка Проверенкова Проверковна",
-    //     createDate: new Date("2021-02-21T12:41:00"),
-    //     changeDate: new Date("2021-02-21T12:41:00"),
-    //     contacts: {
-    //         phoneNumber: "+79029877953",
-    //         facebook: "facebook.link.123"
-    //     },
-    //     oldId: 2
-    // }
-
-    // await updateItem(text);
-// })
