@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             fcs: "Проверка Проверенкова Проверковна",
             createDate: new Date("2021-02-21T12:41:00"),
             changeDate: new Date("2021-02-21T12:41:00"),
-            contacts: JSON.stringify({
+            contacts: {
                 phoneNumber: "+79029877953",
                 facebook: "facebook.link.123"
-            })
+            }
         })
     } else {
         renderClients(table, await getItems());
@@ -69,6 +69,7 @@ setTimeout(() => {
                         if (item.id > itemForDeleteId) {
                             item.oldId = item.id;
                             item.id = item.oldId - 1;
+                            item.contacts = JSON.parse(item.contacts)
                             await updateItem(item);
                         }
                     })
