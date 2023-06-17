@@ -4,6 +4,7 @@ import { deletingAllNewContactsAdd } from "./modules/deletingAllNewContactsAdd.j
 import { validation } from "./modules/validation.js";
 import { deleteFromTable } from "./modules/deleteFromTable.js";
 import { changeClients } from "./modules/changeClients.js";
+import { sorting } from "./modules/sorting.js";
 
 import { getItems, createItem, deleteItem, updateItem } from "./api.js";
 const table = document.querySelector("table");
@@ -119,6 +120,10 @@ setTimeout(() => {
 
         deletingAllNewContactsAdd();
     })
+
+    document.querySelector(".titles").addEventListener("click", async (event) => {
+        await sorting(event.target);
+    })
 }, 200) 
 
 // Contract Add Events
@@ -203,10 +208,9 @@ document.querySelector(".save_new_client").addEventListener("click", async () =>
         document.querySelector(".modal_new_client").style.cssText = "display: none;";
         document.querySelector(".mac_back").style.cssText = "display: none;";  
         deletingAllNewContactsAdd();
-        window.location.reload();
+        // window.location.reload();
     } else {
         document.querySelector(".mnc_title").innerHTML = validCheck;
     }
 })
-
 

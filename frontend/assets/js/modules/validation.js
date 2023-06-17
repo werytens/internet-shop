@@ -1,4 +1,6 @@
 export function validation(item) {
+    console.log(item)
+
     let result = "Неверные данные: "
 
     result += checkFCS(item.fcs)
