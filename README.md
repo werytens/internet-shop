@@ -1,6 +1,6 @@
 # Internet Shop
 
-<div align = "center"><img style = "height: 20vh;" src = "./frontend/assets/img/1aed27558f343f06c5e4ac09d9f809ae.jpg"></div>
+<div align = "center"><img style = "height: 25vh;" src = "./frontend/assets/img/1aed27558f343f06c5e4ac09d9f809ae.jpg"></div>
 
 **For Install And Starting:**
  * Type in ur terminal `cd backend`.
