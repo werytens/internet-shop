@@ -7,7 +7,7 @@ export function renderClients(table, array) {
 function addNewClient(table, allLength, item, index) {
     if (allLength != index) {
         renderClient(table, item)
-        renderLine(table)
+        // renderLine(table)
     } else {
         renderClient(table, item)
     }
@@ -127,8 +127,8 @@ function renderClient(table, item) {
     table.append(tr);
 }
 
-function renderLine(table) {
-    let line = document.createElement('tr');
-    line.classList.add("for_line");
-    table.append(line) 
-}
+// function renderLine(table) {
+//     let line = document.createElement('tr');
+//     line.classList.add("for_line");
+//     table.append(line) 
+// }

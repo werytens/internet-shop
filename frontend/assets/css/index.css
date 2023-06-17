@@ -51,7 +51,7 @@ header {
 
 .other_fields input {
     padding: 0.8vh;
-    padding-right: 25vh;
+    width: 45vh;
 
     border: 0.155vh solid var(--text-two);
 
@@ -155,10 +155,6 @@ td {
     color: var(--some-elements-four);
 }
 
-.for_line {
-    width: 100%;
-    height: 0.2vh;
-}
 
 .add_client_button {
     padding: 1vh 3vh;
@@ -468,24 +464,24 @@ i {
     transition: .3s;
 }
 
-/* .data_set:after {
-    content: "";
-    position: absolute; 	
-
-    border-left: 10px solid rgba(255, 241, 190, 0); 
-    border-right: 10px solid rgba(255, 241, 190, 0); 
-    border-top: 10px solid black; 
-
-    left: 30%; */
-    /* transform: translate(-50%); */
-    /* top: 3.4vh;
-}​ */
-
 .button_section {
     margin-bottom: 10vh;
 }
 
+.user {
+    position: relative;
+}
 
+.user::after {
+    position: absolute;
+    content: "";
+
+    bottom: 0; left: 0;
+
+    background: var(--back);
+    width: 100%;
+    height: 0.2vh;
+}
 
 
 

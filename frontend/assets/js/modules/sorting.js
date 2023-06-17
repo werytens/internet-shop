@@ -1,6 +1,7 @@
 import { getItems } from "../api.js"
 import { renderClients } from "./renderClients.js";
 import { clearTitles } from "./clearTitles.js";
+import { deleteAllItems } from "./deleteAllItems.js";
 
 const table = document.querySelector("table");
 const titlesForSorting = {
@@ -31,10 +32,3 @@ export async function sorting(target) {
     }
     renderClients(table, newItems);
 }
-
-function deleteAllItems() {
-    document.querySelectorAll(".user").forEach(user => user.remove())
-}
-
-// {/* <i class="fa-solid fa-arrow-down"></i>
-// <i class="fa-solid fa-arrow-up"></i> */}
